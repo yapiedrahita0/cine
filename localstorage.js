@@ -1,6 +1,3 @@
-// =============================
-// CARGA INICIAL DE PELÍCULAS
-// =============================
 let peliculas = JSON.parse(localStorage.getItem("peliculas"));
 
 if (!peliculas || peliculas.length === 0) {
@@ -120,9 +117,6 @@ if (!peliculas || peliculas.length === 0) {
     localStorage.setItem("peliculas", JSON.stringify(peliculas));
 }
 
-// =============================
-// USUARIOS
-// =============================
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [
     { user: "admin", password: "admin123" },
     { user: "usuario", password: "1234" },
@@ -132,9 +126,6 @@ let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [
 let usuarioLogueado = localStorage.getItem("usuarioLogueado");
 let peliculaEditandoId = null;
 
-// =============================
-// ELEMENTOS DOM
-// =============================
 const loginSection = document.getElementById("loginSection");
 const mainContent = document.getElementById("mainContent");
 const btnLogin = document.getElementById("btnLogin");
@@ -151,17 +142,13 @@ const selectGenero = document.getElementById("selectGenero");
 const modalPelicula = new bootstrap.Modal(document.getElementById("modalPelicula"));
 const modalDetalles = new bootstrap.Modal(document.getElementById("modalDetalles"));
 
-// =============================
-// INICIALIZACIÓN
-// =============================
+
 document.addEventListener("DOMContentLoaded", () => {
     if (usuarioLogueado) mostrarApp();
     renderPeliculas();
 });
 
-// =============================
-// LOGIN
-// =============================
+
 document.getElementById("formLogin").addEventListener("submit", e => {
     e.preventDefault();
     const user = inputUser.value;
@@ -205,9 +192,7 @@ function mostrarApp() {
     btnAgregar.style.display = "inline-block";
 }
 
-// =============================
-// GUARDAR / EDITAR
-// =============================
+
 btnGuardarPelicula.addEventListener("click", () => {
     const nueva = {
         id: peliculaEditandoId || Date.now(),
@@ -234,9 +219,7 @@ btnGuardarPelicula.addEventListener("click", () => {
     formPelicula.reset();
 });
 
-// =============================
-// RENDER
-// =============================
+
 function renderPeliculas() {
     gridPeliculas.innerHTML = "";
     carouselMovies.innerHTML = "";
@@ -281,9 +264,7 @@ function renderPeliculas() {
     });
 }
 
-// =============================
-// ACCIONES
-// =============================
+
 function verDetalles(id) {
     const p = peliculas.find(p => p.id === id);
 
@@ -320,18 +301,15 @@ function eliminarPelicula(id) {
     renderPeliculas();
 }
 
-// =============================
-// FILTROS
-// =============================
+
 inputBuscar.addEventListener("input", renderPeliculas);
 selectGenero.addEventListener("change", renderPeliculas);
 
-// =============================
-// SLIDER
-// =============================
+
 function scrollSlider(direction) {
     carouselMovies.scrollBy({
         left: direction * 300,
         behavior: "smooth"
     });
 }
+
